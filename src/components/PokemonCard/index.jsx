@@ -3,29 +3,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { handleAbility, handleTypes } from '../../utils';
 
 export default function PokemonCard({ name, img, types, abilities }) {
-
-  const handleTypes = () => {
-    if(types[1]) {
-      return types[0].type.name + ' | ' + types[1].type.name;
-    }
-    else {
-      return types[0].type.name;
-    }
-  }
-
-  const handleAbility = () => {
-    if(abilities[0]) {
-      return abilities[0].ability.name;
-    }
-    else if(abilities[1]) {
-      return abilities[0].ability.name + ' | ' + abilities[1].ability.name;
-    }
-    else {
-      return abilities[0].ability.name + ' | ' + abilities[1].ability.name + ' | ' + abilities[2].ability.name;
-    }
-  } 
 
   return (
     <Card sx={{ maxWidth: 345, backgroundColor: '#f2f2f2', cursor: 'pointer'}} >
@@ -39,10 +19,10 @@ export default function PokemonCard({ name, img, types, abilities }) {
           {name}
         </Typography>
         <Typography gutterBottom variant="caption" component="div">
-          Type: {handleTypes()}
+          Type: {handleTypes(types)}
         </Typography>
         <Typography gutterBottom variant="caption" component="div">
-          Ability: {handleAbility()}
+          Ability: {handleAbility(abilities)}
         </Typography>
       </CardContent>
     </Card>

@@ -71,7 +71,7 @@ export default function NavBar({ findPokemon, hideSearch}) {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Buscar"
+                placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search> 
