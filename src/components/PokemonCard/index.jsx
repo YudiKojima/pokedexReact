@@ -28,7 +28,7 @@ export default function PokemonCard({ name, img, types, abilities }) {
   } 
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: '#f2f2f2'}} >
+    <Card sx={{ maxWidth: 345, backgroundColor: '#f2f2f2', cursor: 'pointer'}} >
       <CardMedia
         sx={{ height: 200 }}
         image={img}

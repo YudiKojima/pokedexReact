@@ -5,6 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import Toolbar from '@mui/material/Toolbar';
 import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,13 +49,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({ findPokemon }) {
+
+
+export default function NavBar({ findPokemon, hideSearch}) {
+
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate('/');
+  }
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom: '2em' }}>
       <AppBar position="static" sx={{backgroundColor: '#222'}}>
         <Toolbar>
           <Box display='flex' justifyContent='space-between' alignItems='center' width='100%'>
-            <Box component='img' src='/assets/pokemon-logo.png' height='3em'/>
+            <Box component='img' src='/assets/pokemon-logo.png' height='3em' sx={{cursor:'pointer'}} onClick={handleHome}/>
+            {hideSearch === true ? null : 
             <Search onChange={(e) => findPokemon(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -63,7 +74,9 @@ export default function NavBar({ findPokemon }) {
                 placeholder="Buscar"
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </Search>
+            </Search> 
+            }
+            
           </Box>
         </Toolbar>
       </AppBar>

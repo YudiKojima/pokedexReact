@@ -1,13 +1,16 @@
-import { Container, Grid } from '@mui/material';
-import NavBar from '../components/NavBar';
-import PokemonCard from '../components/PokemonCard';
+import { Box, Container, Grid } from '@mui/material';
+import NavBar from '../../components/NavBar';
+import PokemonCard from '../../components/PokemonCard';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Load from '../components/Load';
+import Load from '../../components/Load';
+import { useNavigate } from 'react-router-dom';
 
-function Home() {
+function Home({ setPokemonData }) {
 
     const [pokemons, setPokemons] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getPokemon();   
@@ -37,28 +40,34 @@ function Home() {
         }
         setPokemons(findPokemons);
     }
-    
+
+    const handleProfile = (pokemonData) => {
+        setPokemonData(pokemonData);
+        navigate('/profile');
+    }
 
     return(
-        <div>
-            <NavBar findPokemon={findPokemon} />
+        <>
+            <NavBar findPokemon={findPokemon}/>
             <Container maxWidth='false'>
                 <Grid container spacing={3} >
                     {pokemons.length === 0 ? <Load /> : 
                         pokemons.map((pokemon, key) => (
                             <Grid item xs={12} sm={6} md={4} lg={2} key={key}>
-                            <PokemonCard name={pokemon.data.name} 
-                            img={pokemon.data.sprites.front_default}
-                            types={pokemon.data.types}
-                            abilities={pokemon.data.abilities}
-                            />      
+                                <Box onClick={() => handleProfile(pokemon.data)}>
+                                    <PokemonCard name={pokemon.data.name} 
+                                    img={pokemon.data.sprites.front_default}
+                                    types={pokemon.data.types}
+                                    abilities={pokemon.data.abilities}
+                                    />  
+                                </Box>
                             </Grid>
                         ))
                     }
                     
             </Grid>    
             </Container>
-        </div>
+        </>
     )
 }
 
