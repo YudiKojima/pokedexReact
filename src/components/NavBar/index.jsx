@@ -1,4 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
+import { Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
@@ -66,6 +67,8 @@ export default function NavBar({ findPokemon, hideSearch}) {
           <Box display='flex' justifyContent='space-between' alignItems='center' width='100%'>
             <Box component='img' src='/assets/pokemon-logo.png' height='3em' sx={{cursor:'pointer'}} onClick={handleHome}/>
             {hideSearch === true ? null : 
+            <>
+            <Typography fontWeight='bold'>List of '1000' Pokemons</Typography>
             <Search onChange={(e) => findPokemon(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -75,6 +78,7 @@ export default function NavBar({ findPokemon, hideSearch}) {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search> 
+            </>
             }
             
           </Box>

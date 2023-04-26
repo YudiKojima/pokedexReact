@@ -19,7 +19,7 @@ function Home({ setPokemonData }) {
     // trazer o pokemon através da api com limite definido pelo for
     const getPokemon = () => {
     let endpoints = [];
-    for (let i = 1; i <= 200; i++) {
+    for (let i = 1; i <= 1000; i++) {
         endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         }
         axios.all(endpoints.map((endpoint) => 
